@@ -63,6 +63,11 @@ public class Chat extends javax.swing.JFrame {
         txtChatResponse.setPreferredSize(new java.awt.Dimension(600, 300));
         jScrollPane1.setViewportView(txtChatResponse);
 
+        txtChatEntry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtChatEntryActionPerformed(evt);
+            }
+        });
         txtChatEntry.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtChatEntryKeyPressed(evt);
@@ -112,7 +117,8 @@ public class Chat extends javax.swing.JFrame {
             //System.out.println("Ha presionado enter!");
             
             //######################################################
-            textoEntrada = txtChatEntry.getText();
+            textoEntrada = txtChatEntry.getText().replaceAll("[^a-zA-Z0-9]+","");
+            //replaceAll("[^a-zA-Z0-9]+","")
             txtChatResponse.append("Cliente -> "+textoEntrada+"\n");
             txtChatEntry.setText("");
             //######################################################
@@ -126,12 +132,14 @@ public class Chat extends javax.swing.JFrame {
             //##############################################
             //Este es mi textoSalida
             textoSalida = posibleSalida(textoEntrada);
+            
             if(textoSalida.isEmpty()){
                 bot("Buen día Aún no cuento con in formacion referente a "
                         + "'"+textoEntrada+"'"+",\nPodría por favor realizar otra pregunta");
             }else{
                 bot(textoSalida);
             }
+            
             //##############################################
             
             //Testing
@@ -164,6 +172,10 @@ public class Chat extends javax.swing.JFrame {
         irMenu.setVisible(true);
         irMenu.pack();
     }//GEN-LAST:event_btnBackToMenuActionPerformed
+
+    private void txtChatEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtChatEntryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtChatEntryActionPerformed
                                    
     /**
      * @param args the command line arguments
