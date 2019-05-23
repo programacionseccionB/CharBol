@@ -54,6 +54,12 @@ public class PreguntasRespuestas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        txtQuestion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQuestionActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Pregunta");
 
         jLabel2.setText("Respuesta");
@@ -132,8 +138,8 @@ public class PreguntasRespuestas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     //Método para ingresar preguntas con posibles respuestas
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        posibleQuestion = txtQuestion.getText();
-        posibleAnswer = txtAnswer.getText();
+        posibleQuestion = txtQuestion.getText().replaceAll("[^a-zA-Z0-9]+","");
+        posibleAnswer = txtAnswer.getText().replaceAll("[^a-zA-Z0-9]+","");
         /*if(jRadioButtonSaludos.isSelected()){
             objSaludo.setObj(posibleQuestion, posibleAnswer);
             objSaludo.FlushFile(DirObjSaludo);
@@ -180,6 +186,10 @@ public class PreguntasRespuestas extends javax.swing.JFrame {
         irMenu.setVisible(true);
         irMenu.pack();
     }//GEN-LAST:event_btnBackToMenuActionPerformed
+
+    private void txtQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuestionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQuestionActionPerformed
 
     /**
      * @param args the command line arguments
